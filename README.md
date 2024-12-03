@@ -1,0 +1,2 @@
+# Advent of Code 2024 C++ Exploration
+This repository is dedicated to my exploration of C++ and the Advent of Code 2024 challenges. I will be using this repository to document my progress and learning.
