@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <queue>
+#include <unordered_map>
 
 using namespace std;
 
@@ -30,10 +31,11 @@ int main(int argc, char *argv[])
 
   string input = read_input(argv[1]);
 
-  priority_queue<int, vector<int>, greater<int>> list1;
-  priority_queue<int, vector<int>, greater<int>> list2;
+  priority_queue<int, vector<int>, greater<int>> left_queue, right_queue;
 
-  int i, j = 0;
+  vector<int> left, right;
+
+  int i, j, num = 0;
 
   while (i < input.size())
   {
@@ -43,7 +45,9 @@ int main(int argc, char *argv[])
     {
       j++;
     }
-    list1.push(stoi(input.substr(i, j - i)));
+    num = stoi(input.substr(i, j - i));
+    left_queue.push(num);
+    left.push_back(num);
 
     // Find next number
     i = j;
@@ -58,19 +62,47 @@ int main(int argc, char *argv[])
     {
       j++;
     }
-    list2.push(stoi(input.substr(i, j - i)));
+    num = stoi(input.substr(i, j - i));
+    right_queue.push(num);
+    right.push_back(num);
 
     // Jump over newline
     i = j + 1;
   }
 
+  // Calculate Part 1
   int result = 0;
 
-  while (!list1.empty() && !list2.empty())
+  while (!left_queue.empty() && !right_queue.empty())
   {
-    result += abs(list1.top() - list2.top());
-    list1.pop();
-    list2.pop();
+    result += abs(left_queue.top() - right_queue.top());
+    left_queue.pop();
+    right_queue.pop();
+  }
+
+  cout << result << endl;
+
+  // Calculate Part 2
+  unordered_map<int, int> counter;
+
+  for (auto num : left)
+  {
+    counter[num] = 0;
+  }
+
+  for (auto num : right)
+  {
+    if (counter.find(num) != counter.end())
+    {
+      counter[num]++;
+    }
+  }
+
+  result = 0;
+
+  for (auto num : left)
+  {
+    result += num * counter[num];
   }
 
   cout << result << endl;

@@ -1,4 +1,4 @@
-## Intuition (Part 1)
+# Intuition (Part 1)
 
 My initial thoughts after reading this problem is that this is most efficiently and easily solved by using a min heap or priority queue. Setting up one priority queue for each list of id's, popping them both and adding the absolute difference to the result until both queues are empty.
 
@@ -41,4 +41,26 @@ I found that the C++ standard library has a built in priority queue that I can u
 priority_queue<int> pq;
 ```
 
-## Intuition (Part 2)
+Transforming into a min heap is as simple as passing in a comparator function as the second argument.
+
+```cpp
+priority_queue<int, vector<int>, greater<int>> pq;
+```
+
+# Intuition (Part 2)
+
+This is a easy map problem, or more accurately i need to implement a counter. I need to put every number in the left list as a key in the map, initialized as 0. And then for every matching number in the right list, increment the value of the key in the map. Then i need to run through the keys and multiply the key by the value and add it to the result.
+
+## Hurdles
+
+### Hash Map
+
+If C++ has a built in priority queue, it probably has a built in hash map as well. I will need to look up how to use it and see if it has any special features that I can use.
+
+#### Solution
+
+I found that the C++ standard library has a built in hash map that I can use. I can use the `std::unordered_map` class to create a hash map.
+
+```cpp
+unordered_map<int, int> map;
+```
