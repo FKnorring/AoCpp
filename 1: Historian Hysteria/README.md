@@ -49,7 +49,7 @@ priority_queue<int, vector<int>, greater<int>> pq;
 
 # Intuition (Part 2)
 
-This is a easy map problem, or more accurately i need to implement a counter. I need to put every number in the left list as a key in the map, initialized as 0. And then for every matching number in the right list, increment the value of the key in the map. Then i need to run through the keys and multiply the key by the value and add it to the result.
+This is a easy map problem, or more accurately i need to implement a counter. I need to put every number in the left list as a key in the map, initialized as 0. And then for every matching number in the right list, increment the value of the key in the map. Then i need to run through the left list again and add its value multiplied by its count to the result.
 
 ## Hurdles
 
